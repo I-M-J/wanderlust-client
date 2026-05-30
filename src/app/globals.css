@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+@theme {
+  --color-black-c0: #0C0B0B;
+  --color-gray-6c: #6C696D;
+  --color-teal-15: #15A1BF;
+  --color-gray-b6: #B6B6B6;
+  --color-white-ed: #EDFCFF;
+
+  --font-sans: var(--font-geist);
+}
