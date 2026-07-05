@@ -1,4 +1,3 @@
-import Link from "next/link";
 import NavLink from "./NavLink";
 import Image from "next/image";
 import logoImg from "@/assets/Wanderlast.png";
@@ -10,14 +9,14 @@ const navLinks = [
     { name: "Home", href: "/" },
     { name: "Destinations", href: "/destinations" },
     { name: "My Bookings", href: "/my-bookings" },
-    { name: "Admin", href: "/admin" },
+    { name: "Admin", href: "/add-destination" },
 ]
 
 const Navbar = () => {
     return (
         <nav className="relative p-4">
             <div className="flex items-center justify-start gap-4 sm:justify-between px-6 py-4 bg-white">
-                <ul className="hidden lg:flex flex-1 gap-8 ">
+                <ul className="hidden lg:flex flex-1 gap-4 ">
                     {
                         navLinks.map(navLink => (
                             <li key={navLink.name} className="font-medium leading-6 text-black-0c0"><NavLink navLink={navLink} /></li>
