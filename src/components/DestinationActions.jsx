@@ -11,7 +11,8 @@ import {
     Select,
     ListBox,
     TextArea,
-    FieldError
+    FieldError,
+    AlertDialog
 } from "@heroui/react";
 
 const CATEGORIES = [
@@ -21,12 +22,21 @@ const CATEGORIES = [
 const DestinationActions = ({ id, destination }) => {
     const router = useRouter();
 
-    const handleDelete = () => {
-        const confirmed = window.confirm(`Are you sure you want to delete "${destination?.name}"?`);
-        if (confirmed) {
-            alert('Destination deleted successfully! (Simulated)');
-            router.push('/destinations');
-        }
+    const handleDelete = async () => {
+        // alert('Travel package deleted successfully! (Simulated)');
+        // router.push('/destinations');
+        // return true;
+
+        const res = await fetch(`http://localhost:5000/destinations/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    "content-type": "application/json",
+                },
+            }
+        );
+
+        const data = await res.json();
     };
 
     const onSubmit = async (e) => {
@@ -74,6 +84,8 @@ const DestinationActions = ({ id, destination }) => {
         const data = await res.json();
 
         console.log(data);
+
+        router.push("/destinations");
     };
 
     return (
@@ -220,14 +232,61 @@ const DestinationActions = ({ id, destination }) => {
                 </Modal.Backdrop>
             </Modal>
 
-            {/* Cancel (Delete) Button is outside the Modal block */}
-            <button
-                onClick={handleDelete}
-                className="flex items-center gap-1.5 px-4 py-2 border border-red-200 text-red-500 hover:bg-red-50 transition-colors font-semibold text-sm rounded-none cursor-pointer"
-            >
-                <MdDeleteOutline className="w-4.5 h-4.5 text-red-500" />
-                Cancel
-            </button>
+            {/* Delete AlertDialog Trigger and Dialog */}
+            <AlertDialog>
+                <Button
+                    className="flex items-center gap-1.5 px-4 py-2 border border-red-200 bg-transparent text-red-500 hover:bg-red-50 transition-colors font-semibold text-sm rounded-none cursor-pointer"
+                >
+                    <MdDeleteOutline className="w-4.5 h-4.5 text-red-500" />
+                    Delete
+                </Button>
+
+                <AlertDialog.Backdrop>
+                    <AlertDialog.Container>
+                        <AlertDialog.Dialog className="outline-none rounded-none w-full max-w-lg bg-white shadow-2xl border border-white-ee p-8 flex flex-col gap-6 relative">
+                            <AlertDialog.CloseTrigger className="text-gray-400 hover:text-black-c0 cursor-pointer p-1 absolute top-4 right-4 bg-transparent transition-colors">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </AlertDialog.CloseTrigger>
+
+                            <AlertDialog.Header className="flex flex-row items-center justify-start gap-3.5 p-0 border-none">
+                                <AlertDialog.Icon className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0 p-0 border-none">
+                                    <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </AlertDialog.Icon>
+                                <AlertDialog.Heading className="text-xl font-bold text-black-c0 m-0 text-left">
+                                    Delete Travel Package
+                                </AlertDialog.Heading>
+                            </AlertDialog.Header>
+
+                            <AlertDialog.Body className="p-0 border-none mt-2 text-left">
+                                <p className="text-sm text-gray-6c leading-relaxed font-normal">
+                                    Are you sure you want to delete <span className="font-semibold text-black-c0">&quot;{destination?.name}&quot;</span>? This action cannot be undone and will permanently remove this travel package from the system.
+                                </p>
+                            </AlertDialog.Body>
+
+                            <AlertDialog.Footer className="flex flex-row justify-end gap-3 p-0 border-none mt-2">
+                                <Button
+                                    slot="close"
+                                    className="bg-white border border-gray-200 hover:bg-gray-50 text-gray-500 hover:text-gray-700 px-6 py-2.5 rounded-none font-semibold text-sm cursor-pointer transition-colors"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    onClick={handleDelete}
+                                    slot="close"
+                                    className="flex items-center gap-1.5 px-6 py-2.5 bg-[#EF4444] hover:bg-red-600 text-white font-semibold text-sm rounded-none cursor-pointer transition-colors"
+                                >
+                                    <MdDeleteOutline size={18} />
+                                    Delete Package
+                                </Button>
+                            </AlertDialog.Footer>
+                        </AlertDialog.Dialog>
+                    </AlertDialog.Container>
+                </AlertDialog.Backdrop>
+            </AlertDialog>
         </div >
     );
 };
