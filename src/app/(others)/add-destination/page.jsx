@@ -286,9 +286,9 @@ const AddDestinationPage = () => {
     return (
         <section className="py-20 px-4 sm:px-6 lg:px-20">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-5xl lg:text-7xl text-black-c0 mb-22 text-center lg:text-left">Add New Travel Package</h2>
+                <h2 className="text-5xl lg:text-6xl text-black-c0 mb-22 text-center lg:text-left">Add New Travel Package</h2>
 
-                <form onSubmit={onSubmit} className="max-w-4xl mx-auto shadow border border-white-ee/93 p-10" action="">
+                <form onSubmit={onSubmit} className="max-w-4xl mx-auto shadow border border-white-ee/93 p-10">
                     <TextField name="name" className="mb-5" isRequired>
                         <Label className="font-medium text-lg leading-6 text-black-c0 mb-2">Destination Name</Label>
 

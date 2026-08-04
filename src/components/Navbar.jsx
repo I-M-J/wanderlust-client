@@ -4,6 +4,7 @@ import logoImg from "@/assets/Wanderlast.png";
 import { Person } from '@gravity-ui/icons';
 import { Button } from "@heroui/react";
 import MobileMenu from "./MobileMenu";
+import Link from "next/link";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -40,9 +41,9 @@ const Navbar = () => {
                         Login
                     </Button>
 
-                    <Button className="bg-transparent text-black-c0 h-fit p-0 hover:scale-105 hover:text-teal-015 transition duration-300">
+                    <Link href="/signup" className="bg-transparent text-black-c0 h-fit p-0 hover:scale-105 hover:text-teal-015 transition duration-300">
                         Sign Up
-                    </Button>
+                    </Link>
                 </div>
             </div>
         </nav>
