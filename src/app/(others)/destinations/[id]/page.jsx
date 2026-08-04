@@ -100,7 +100,7 @@ const DestinationDetailsPage = async ({ params }) => {
 
                         {/* Overview */}
                         <div>
-                            <h2 className="text-2xl font-bold text-black-c0 mb-4 uppercase tracking-wider text-sm lg:text-base">
+                            <h2 className="font-bold text-black-c0 mb-4 uppercase tracking-wider text-sm lg:text-base">
                                 Overview
                             </h2>
                             <p className="text-gray-6c leading-relaxed text-base whitespace-pre-line">
