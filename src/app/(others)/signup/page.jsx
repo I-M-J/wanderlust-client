@@ -4,10 +4,36 @@ import Link from "next/link";
 import { Button, FieldError, Input, Label, TextField } from "@heroui/react";
 import { LuUser, LuMail, LuLock, LuImage } from "react-icons/lu";
 import { FcGoogle } from "react-icons/fc";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const SignupPage = () => {
-    const handleSubmit = (e) => {
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const userData = Object.fromEntries(formData.entries());
+
+        console.log(userData);
+
+        const { data, error } = await authClient.signUp.email({
+            email: userData.email,
+            password: userData.password,
+            name: userData.fullName,
+            image: userData.profileImage,
+        });
+
+        if (data) {
+            router.push("/");
+        }
+
+        if (error) {
+            // toast
+            alert("Error: " + error.message);
+        }
+
     };
 
     return (
