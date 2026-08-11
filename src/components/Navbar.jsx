@@ -46,7 +46,7 @@ const Navbar = async () => {
                     {user
                         ? (<>
                             <Avatar>
-                                <Avatar.Image alt={user.name} src={user.image} />
+                                <Avatar.Image alt={user.name} src={user.image} referrerPolicy="no-referrer" />
                                 <Avatar.Fallback>
                                     {user.name
                                         ? (user.name.charAt(0) + user.name.split(" ")[1]?.charAt(0) || "").toUpperCase()

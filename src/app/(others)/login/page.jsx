@@ -34,6 +34,10 @@ const LoginPage = () => {
 
     };
 
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({ provider: "google" });
+    }
+
     return (
         <section className="bg-gray-f8 min-h-[calc(100vh-120px)] py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
             {/* Header section */}
@@ -106,6 +110,7 @@ const LoginPage = () => {
                 {/* Google Signup Button */}
                 <Button
                     type="button"
+                    onClick={handleGoogleSignIn}
                     className="w-full bg-white hover:bg-gray-50 text-black-c0 border border-gray-200 font-medium py-3 px-4 text-sm rounded-none transition-colors cursor-pointer flex items-center justify-center gap-2.5"
                 >
                     <FcGoogle className="w-5 h-5 shrink-0" />
