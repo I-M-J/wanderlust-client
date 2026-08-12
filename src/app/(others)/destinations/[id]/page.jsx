@@ -112,9 +112,7 @@ const DestinationDetailsPage = async ({ params }) => {
                     {/* Right Column (Booking Widget) */}
                     <div className="lg:col-span-1">
                         <BookingWidget
-                            price={destination.price}
-                            departureDate={destination.departureDate}
-                            destinationName={destination.name}
+                            destination={destination}
                         />
                     </div>
                 </div>
