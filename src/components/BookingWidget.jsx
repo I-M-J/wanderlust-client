@@ -52,6 +52,8 @@ const BookingWidget = ({ destination }) => {
         const data = await res.json();
 
         console.log(data);
+
+        toast.success("Booking request submitted successfully");
     };
 
     // const formatDate = (dateStr) => {

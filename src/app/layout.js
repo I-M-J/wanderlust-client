@@ -1,7 +1,6 @@
 import { Geist } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -21,6 +20,8 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col font-geist">
         {children}
+
+        <Toaster />
       </body>
     </html>
   );
