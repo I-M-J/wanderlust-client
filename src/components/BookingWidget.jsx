@@ -5,9 +5,10 @@ import { DateField, Description, Label } from "@heroui/react";
 import { MdCheck } from "react-icons/md";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const BookingWidget = ({ destination }) => {
-    const { price, _id, destinationName, imageUrl, country } = destination;
+    const { price, _id, name, imageUrl, country } = destination;
 
     console.log(destination);
 
@@ -32,7 +33,7 @@ const BookingWidget = ({ destination }) => {
             userName: user.name,
             userImage: user.image,
             destinationId: _id,
-            destinationName,
+            destinationName: name,
             price,
             imageUrl,
             country,

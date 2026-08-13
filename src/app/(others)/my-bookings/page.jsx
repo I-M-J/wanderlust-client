@@ -3,6 +3,7 @@ import { Eye, TrashBin } from "@gravity-ui/icons";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import BookingCancelAlert from "@/components/BookingCancelAlert";
 
 // ─── Static mock data ────────────────────────────────────────────────────────
 // const MOCK_BOOKINGS = [
@@ -139,7 +140,7 @@ function BookingCard({ booking }) {
 
                 {/* Action buttons */}
                 <div className="flex flex-row gap-2.5 items-start md:items-end md:justify-center shrink-0">
-                    {booking.status !== "cancelled" && (
+                    {/* {booking.status !== "cancelled" && (
                         <button
                             id={`cancel-booking-${booking._id}`}
                             disabled
@@ -148,7 +149,11 @@ function BookingCard({ booking }) {
                             <TrashBin className="w-4 h-4" />
                             Cancel
                         </button>
-                    )}
+                    )} */}
+
+                    {console.log(booking.destinationName)}
+
+                    <BookingCancelAlert destinationName={booking.destinationName} bookingId={booking._id} />
 
                     <Link
                         href={`/destinations/${booking.destinationId}`}
